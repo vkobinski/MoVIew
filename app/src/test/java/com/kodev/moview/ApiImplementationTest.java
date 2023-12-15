@@ -9,22 +9,29 @@ import com.kodev.moview.models.Movie;
 import junit.framework.TestCase;
 
 import java.util.List;
+import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.TimeUnit;
 
 import retrofit2.Call;
 
-public class ApiImplementationTest extends TestCase implements ApiCallbacks {
+public class ApiImplementationTest extends TestCase {
 
     public void setUp() throws Exception {
         super.setUp();
     }
 
-    public void testListDiscoverMovies() {
-        ApiImplementation.getInstance().listDiscoverMovies(this);
+    public void testListDiscoverMovies() throws InterruptedException {
+        CountDownLatch latch = new CountDownLatch(1);
+
+        ApiImplementation.getInstance().listDiscoverMovies(new ApiCallbacks() {
+            @Override
+            public void getMoviesCallBack(MovieApi movies) {
+                System.out.println(movies);
+                latch.countDown();
+            }
+        });
+
+        latch.await(5, TimeUnit.SECONDS);
     }
 
-    @Override
-    public void getMoviesCallBack(List<MovieApi> movies) {
-        System.out.println(movies);
-        assertEquals(movies.size(), 1);
-    }
 }

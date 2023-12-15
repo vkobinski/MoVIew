@@ -10,9 +10,14 @@ import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
+import com.kodev.moview.api.ApiCallbacks;
+import com.kodev.moview.api.ApiImplementation;
+import com.kodev.moview.api.MovieApi;
 import com.kodev.moview.databinding.ActivityMainBinding;
 
-public class MainActivity extends AppCompatActivity {
+import java.util.List;
+
+public class MainActivity extends AppCompatActivity implements ApiCallbacks {
 
     private ActivityMainBinding binding;
 
@@ -32,6 +37,12 @@ public class MainActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_activity_main);
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(binding.navView, navController);
+
+        ApiImplementation.getInstance().listDiscoverMovies(this);
     }
 
+    @Override
+    public void getMoviesCallBack(MovieApi movies) {
+        System.out.println(movies.getResults().get(0).getOriginalTitle());
+    }
 }

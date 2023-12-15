@@ -20,7 +20,6 @@ import java.util.List;
 public class Bookmark extends LinearLayout {
 
     private ImageView bookmark;
-
     public Bookmark(Context context) {
         super(context);
         init(null, 0);
@@ -36,7 +35,6 @@ public class Bookmark extends LinearLayout {
         init(attrs, 0);
     }
 
-
     private void init(AttributeSet attrs, int defStyle) {
 
         LayoutInflater.from(getContext()).inflate(R.layout.bookmark, this, true);
@@ -47,20 +45,31 @@ public class Bookmark extends LinearLayout {
         ColorDrawable blueColor = new ColorDrawable(Color.parseColor("#3EBBF3"));
         ColorDrawable grayColor = new ColorDrawable(Color.parseColor("#d9d9d9"));
 
+
+
         bookmark = findViewById(R.id.imagembookmark);
+
+        Drawable drawable = bookmark.getDrawable();
+        drawable.setColorFilter(new PorterDuffColorFilter(grayColor.getColor(), PorterDuff.Mode.SRC_IN));
+        bookmark.setImageDrawable(drawable);
 
         boolean ativo = a.getBoolean(R.styleable.bookmark_active, false);
 
         if(ativo) {
+            drawable = bookmark.getDrawable();
+            drawable.setColorFilter(new PorterDuffColorFilter(blueColor.getColor(), PorterDuff.Mode.SRC_IN));
+            bookmark.setImageDrawable(drawable);
+        }
+    }
+
+    public void paint(boolean paint) {
+
+        ColorDrawable blueColor = new ColorDrawable(Color.parseColor("#3EBBF3"));
+
+        if(paint) {
             Drawable drawable = bookmark.getDrawable();
             drawable.setColorFilter(new PorterDuffColorFilter(blueColor.getColor(), PorterDuff.Mode.SRC_IN));
             bookmark.setImageDrawable(drawable);
-        } else {
-            Drawable drawable = bookmark.getDrawable();
-            drawable.setColorFilter(new PorterDuffColorFilter(grayColor.getColor(), PorterDuff.Mode.SRC_IN));
-            bookmark.setImageDrawable(drawable);
         }
-
     }
-
 }

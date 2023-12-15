@@ -24,23 +24,25 @@ public class ApiImplementation {
     public void listDiscoverMovies(ApiCallbacks callback) {
         ApiInterface apiInterface = ApiClient.getClient();
 
-        Call<List<MovieApi>> call = apiInterface.listDiscoverMovies();
+        Call<MovieApi> call = apiInterface.listDiscoverMovies();
 
 
-        call.enqueue(new Callback<List<MovieApi>>() {
+        call.enqueue(new Callback<MovieApi>() {
             @Override
-            public void onResponse(Call<List<MovieApi>> call, Response<List<MovieApi>> response) {
+            public void onResponse(Call<MovieApi> call, Response<MovieApi> response) {
+
+                System.out.println(response.code());
 
                 if(response.isSuccessful()) {
-                    List<MovieApi> moviesApi = response.body();
+                    MovieApi moviesApi = response.body();
                     callback.getMoviesCallBack(moviesApi);
                 }
 
             }
 
             @Override
-            public void onFailure(Call<List<MovieApi>> call, Throwable t) {
-
+            public void onFailure(Call<MovieApi> call, Throwable t) {
+                System.out.println(t.getMessage());
             }
         });
     }

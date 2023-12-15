@@ -4,5 +4,5 @@ import java.util.List;
 
 public interface ApiCallbacks {
 
-   void getMoviesCallBack(List<MovieApi> movies);
+   void getMoviesCallBack(MovieApi movies);
 }

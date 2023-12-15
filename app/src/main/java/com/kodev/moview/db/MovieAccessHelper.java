@@ -180,4 +180,14 @@ public final class MovieAccessHelper {
 
         if(count != -1) Log.e("DATABASE", "Database update by ID affected more than one Row");
     }
+
+    public Movie searchMovieByApiId(String apiId) {
+        List<Movie> movies = getAll();
+
+        for(Movie movie : movies) {
+            if(movie.getApiId() == apiId) return movie;
+        }
+
+        return null;
+    }
 }

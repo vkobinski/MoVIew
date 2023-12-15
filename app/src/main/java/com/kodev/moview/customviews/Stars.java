@@ -24,6 +24,7 @@ import java.util.List;
 public class Stars extends LinearLayout {
 
     private List<ImageView> estrelas = new ArrayList<>();
+    private int quantity = -1;
 
     public Stars(Context context) {
         super(context);
@@ -40,6 +41,9 @@ public class Stars extends LinearLayout {
         init(attrs, 0);
     }
 
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
 
     private void init(AttributeSet attrs, int defStyle) {
 
@@ -68,6 +72,18 @@ public class Stars extends LinearLayout {
                 starDrawable.setColorFilter(new PorterDuffColorFilter(yellowColor.getColor(), PorterDuff.Mode.SRC_IN));
                 estrelas.get(i).setImageDrawable(starDrawable);
         }
+
+    }
+
+    public void paint(int quantity) {
+
+        ColorDrawable yellowColor = new ColorDrawable(Color.parseColor("#FFF500"));
+        for(int i = 0; i < quantity; i++) {
+            Drawable starDrawable = estrelas.get(i).getDrawable();
+            starDrawable.setColorFilter(new PorterDuffColorFilter(yellowColor.getColor(), PorterDuff.Mode.SRC_IN));
+            estrelas.get(i).setImageDrawable(starDrawable);
+        }
+
 
     }
 
