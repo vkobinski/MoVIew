@@ -1,0 +1,5 @@
+<resources>
+    <declare-styleable name="stars">
+        <attr name="quantity" format="integer" />
+    </declare-styleable>
+</resources>
