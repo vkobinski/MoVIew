@@ -17,7 +17,7 @@ import com.kodev.moview.databinding.ActivityMainBinding;
 
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity implements ApiCallbacks {
+public class MainActivity extends AppCompatActivity {
 
     private ActivityMainBinding binding;
 
@@ -38,11 +38,7 @@ public class MainActivity extends AppCompatActivity implements ApiCallbacks {
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(binding.navView, navController);
 
-        ApiImplementation.getInstance().listDiscoverMovies(this);
     }
 
-    @Override
-    public void getMoviesCallBack(MovieApi movies) {
-        System.out.println(movies.getResults().get(0).getOriginalTitle());
-    }
+
 }

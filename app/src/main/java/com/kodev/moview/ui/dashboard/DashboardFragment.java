@@ -61,9 +61,15 @@ public class DashboardFragment extends Fragment  implements ApiCallbacks {
     public void getMoviesCallBack(MovieApi movies) {
         for(MovieApi.Movie movie : movies.getResults())  {
             MovieCatalog catalog = new MovieCatalog(this.context);
-            catalog.setData(movie);
+            catalog.setData(movie, this);
             linear.addView(catalog);
 
         }
+    }
+
+    @Override
+    public void reDownload() {
+        linear.removeAllViews();
+        ApiImplementation.getInstance().listDiscoverMovies(this);
     }
 }

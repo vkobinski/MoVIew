@@ -20,7 +20,6 @@ import java.util.List;
 public class Bookmark extends LinearLayout {
 
     private ImageView bookmark;
-    private boolean marked;
     public Bookmark(Context context) {
         super(context);
         init(null, 0);
@@ -49,26 +48,14 @@ public class Bookmark extends LinearLayout {
 
 
         bookmark = findViewById(R.id.imagembookmark);
-
-        Drawable drawable = bookmark.getDrawable();
-        drawable.setColorFilter(new PorterDuffColorFilter(grayColor.getColor(), PorterDuff.Mode.SRC_IN));
-        bookmark.setImageDrawable(drawable);
-
-        if(marked) {
-            drawable = bookmark.getDrawable();
-            drawable.setColorFilter(new PorterDuffColorFilter(blueColor.getColor(), PorterDuff.Mode.SRC_IN));
-            bookmark.setImageDrawable(drawable);
-        }
     }
 
     public void paint(boolean paint) {
 
-        this.marked = paint;
-
         ColorDrawable blueColor = new ColorDrawable(Color.parseColor("#3EBBF3"));
 
         if(paint) {
-            Drawable drawable = bookmark.getDrawable();
+            Drawable drawable = bookmark.getDrawable().mutate();
             drawable.setColorFilter(new PorterDuffColorFilter(blueColor.getColor(), PorterDuff.Mode.SRC_IN));
             bookmark.setImageDrawable(drawable);
         }
