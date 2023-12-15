@@ -48,7 +48,7 @@
         android:layout_marginTop="2dp"
         app:layout_constraintStart_toStartOf="@+id/movieImage"
         app:layout_constraintTop_toBottomOf="@+id/movie_desc"
-        stars:quantity="0" />
+        />
 
     <com.kodev.moview.customviews.Bookmark
         android:layout_width="wrap_content"

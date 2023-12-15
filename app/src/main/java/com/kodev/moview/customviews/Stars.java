@@ -24,7 +24,6 @@ import java.util.List;
 public class Stars extends LinearLayout {
 
     private List<ImageView> estrelas = new ArrayList<>();
-    private int quantity = -1;
 
     public Stars(Context context) {
         super(context);
@@ -40,12 +39,7 @@ public class Stars extends LinearLayout {
         super(context, attrs, defStyleAttr);
         init(attrs, 0);
     }
-
-    public void setQuantity(int quantity) {
-        this.quantity = quantity;
-    }
-
-    private void init(AttributeSet attrs, int defStyle) {
+  private void init(AttributeSet attrs, int defStyle) {
 
         LayoutInflater.from(getContext()).inflate(R.layout.sample_stars, this, true);
 
@@ -54,37 +48,22 @@ public class Stars extends LinearLayout {
 
         for(int i = 0; i < 5; i++) {
             int estrelaId = getResources().getIdentifier("estrela" + (i+1), "id", getContext().getPackageName());
-            ImageView estrelaAtual = findViewById(estrelaId);
-            Drawable estrelaDrawable = estrelaAtual.getDrawable();
-            ColorDrawable grayColor = new ColorDrawable(Color.parseColor("#d9d9d9"));
-            estrelaDrawable.setColorFilter(new PorterDuffColorFilter(grayColor.getColor(), PorterDuff.Mode.SRC_IN));
-            estrelaAtual.setImageDrawable(estrelaDrawable);
-            estrelas.add(estrelaAtual);
+            estrelas.add(findViewById(estrelaId));
 
-        }
-
-        ColorDrawable yellowColor = new ColorDrawable(Color.parseColor("#FFF500"));
-
-        int starQuantity = a.getInt(R.styleable.stars_quantity, 0);
-
-        for(int i = 0; i < starQuantity; i++) {
-                Drawable starDrawable = estrelas.get(i).getDrawable();
-                starDrawable.setColorFilter(new PorterDuffColorFilter(yellowColor.getColor(), PorterDuff.Mode.SRC_IN));
-                estrelas.get(i).setImageDrawable(starDrawable);
         }
 
     }
 
-    public void paint(int quantity) {
-
+    public void paint(float voteAverage) {
+        int quantity = Math.round((voteAverage / 10) * 5);
         ColorDrawable yellowColor = new ColorDrawable(Color.parseColor("#FFF500"));
-        for(int i = 0; i < quantity; i++) {
-            Drawable starDrawable = estrelas.get(i).getDrawable();
+
+
+        for (int i = 0; i < quantity; i++) {
+
+            Drawable starDrawable = estrelas.get(i).getDrawable().mutate();
             starDrawable.setColorFilter(new PorterDuffColorFilter(yellowColor.getColor(), PorterDuff.Mode.SRC_IN));
             estrelas.get(i).setImageDrawable(starDrawable);
         }
-
-
     }
-
 }

@@ -90,6 +90,11 @@ public final class MovieAccessHelper {
     public long addMovie(Movie mv) {
         SQLiteDatabase database = db.getWritableDatabase();
 
+
+        Movie movie = searchMovieByApiId(mv.getApiId());
+
+        if(movie != null) return -1;
+
         ContentValues values = new ContentValues();
         values.put(MovieSqlite.MovieEntry.COLUMN_NAME_MOVIE_NAME, mv.getName());
         values.put(MovieSqlite.MovieEntry.COLUMN_NAME_RATING, mv.getRating());
@@ -185,7 +190,7 @@ public final class MovieAccessHelper {
         List<Movie> movies = getAll();
 
         for(Movie movie : movies) {
-            if(movie.getApiId() == apiId) return movie;
+            if(movie.getApiId().contains(apiId)) return movie;
         }
 
         return null;
