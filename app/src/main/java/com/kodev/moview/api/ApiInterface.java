@@ -16,6 +16,7 @@ public interface ApiInterface {
     })
     @GET("/3/discover/movie")
     Call<MovieApi> listDiscoverMovies();
+    // TODO: make discover use the same page logic as searchMovies
 
     @Headers({
             "Accept: application/json",
