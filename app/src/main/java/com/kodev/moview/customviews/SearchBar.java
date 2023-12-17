@@ -8,6 +8,7 @@ import android.graphics.PorterDuffColorFilter;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.EditText;
@@ -17,6 +18,8 @@ import android.widget.LinearLayout;
 import com.kodev.moview.R;
 import com.kodev.moview.api.ApiCallbacks;
 import com.kodev.moview.api.ApiImplementation;
+
+import java.security.Key;
 
 public class SearchBar extends LinearLayout {
 
@@ -64,6 +67,19 @@ public class SearchBar extends LinearLayout {
 
         buscaText = findViewById(R.id.buscaText);
         buscaButton = findViewById(R.id.buscaButton);
+
+        buscaText.setOnKeyListener(new OnKeyListener() {
+            @Override
+            public boolean onKey(View v, int keyCode, KeyEvent event) {
+
+                if(KeyEvent.KEYCODE_ENTER == keyCode)  {
+                    page = 1;
+                    getMovies();
+                    return true;
+                }
+                return false;
+            }
+        });
 
         buscaButton.setOnClickListener(new OnClickListener() {
             @Override
