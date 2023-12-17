@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    tools:context=".ui.movie_view.MovieViewFragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/movie_view_poster"
+            android:layout_width="210dp"
+            android:layout_height="285dp"
+            android:layout_marginTop="10dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:src="@color/light_blue_400" />
+
+        <TextView
+            android:id="@+id/movie_view_sinopse_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
+            android:fontFamily="@font/istok_web"
+            android:text="Sinopse"
+            android:textColor="@color/white"
+            android:textSize="22dp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="@+id/movie_view_sinopse"
+            app:layout_constraintTop_toBottomOf="@+id/movie_view_stars" />
+
+        <TextView
+            android:id="@+id/movie_view_sinopse"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="70dp"
+            android:fontFamily="@font/istok_web"
+            android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud."
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@id/movie_view_poster"
+            app:layout_constraintStart_toStartOf="@+id/movie_view_poster"
+            app:layout_constraintTop_toBottomOf="@+id/movie_view_sinopse_label" />
+
+
+        <TextView
+            android:id="@+id/movie_view_movie_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:fontFamily="@font/istok_web"
+            android:text="movie_name"
+            android:textColor="@color/white"
+            android:textSize="22dp"
+            app:layout_constraintStart_toStartOf="@+id/movie_view_sinopse_label"
+            app:layout_constraintTop_toBottomOf="@+id/movie_view_poster" />
+
+        <com.kodev.moview.customviews.Stars
+            android:id="@+id/movie_view_stars"
+            android:layout_width="100dp"
+            android:layout_height="20dp"
+            app:layout_constraintStart_toStartOf="@+id/movie_view_movie_name"
+            app:layout_constraintTop_toBottomOf="@+id/movie_view_movie_name" />
+
+        <com.kodev.moview.customviews.Bookmark
+            android:id="@+id/movie_view_bookmark"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            app:layout_constraintEnd_toEndOf="@+id/movie_view_sinopse"
+            app:layout_constraintTop_toBottomOf="@+id/movie_view_movie_name" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

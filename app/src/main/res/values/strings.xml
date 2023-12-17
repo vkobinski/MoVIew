@@ -3,4 +3,5 @@
     <string name="title_home">Vistos</string>
     <string name="title_dashboard">Catálogo</string>
     <string name="title_notifications">Quero Ver</string>
+    <string name="title_movie_view">Filme</string>
 </resources>

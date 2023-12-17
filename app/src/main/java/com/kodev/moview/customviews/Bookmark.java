@@ -53,11 +53,13 @@ public class Bookmark extends LinearLayout {
     public void paint(boolean paint) {
 
         ColorDrawable blueColor = new ColorDrawable(Color.parseColor("#3EBBF3"));
+        ColorDrawable grayColor = new ColorDrawable(Color.parseColor("#d9d9d9"));
+        Drawable drawable = bookmark.getDrawable().mutate();
 
-        if(paint) {
-            Drawable drawable = bookmark.getDrawable().mutate();
-            drawable.setColorFilter(new PorterDuffColorFilter(blueColor.getColor(), PorterDuff.Mode.SRC_IN));
-            bookmark.setImageDrawable(drawable);
-        }
+        if(paint) drawable.setColorFilter(new PorterDuffColorFilter(blueColor.getColor(), PorterDuff.Mode.SRC_IN));
+        else drawable.setColorFilter(new PorterDuffColorFilter(grayColor.getColor(), PorterDuff.Mode.SRC_IN));
+
+        bookmark.setImageDrawable(drawable);
+
     }
 }

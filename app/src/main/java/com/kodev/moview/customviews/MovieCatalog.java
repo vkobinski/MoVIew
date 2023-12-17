@@ -41,11 +41,9 @@ public class MovieCatalog extends LinearLayout {
         init(attrs, 0);
     }
 
-    public void setData(MovieApi.Movie movie, ApiCallbacks apiCallbacks) {
+    public void setData(MovieApi.Movie movie) {
 
         Movie movie1 = MovieAccessHelper.getContext(getContext()).searchMovieByApiId(movie.getId().toString());
-
-
 
         moviePoster = findViewById(R.id.movieImage);
             name = findViewById(R.id.movie_name);
@@ -56,20 +54,12 @@ public class MovieCatalog extends LinearLayout {
             name.setText(movie.getOriginalTitle());
             desc.setText(movie.getReleaseDate());
 
-            stars.paint(movie.getVoteAverage());
+            stars.paintByRating(movie.getVoteAverage());
 
         if(movie1 != null && movie1.isWatchlist()) {
-            System.out.println("HERE");
             bookmark.paint(true);
         }else bookmark.paint(false);
 
-
-        ImageApiClient.getInstance().getImage(movie.getPosterPath(), new ImageCallback() {
-            @Override
-            public void downloadImage(Bitmap bitmap) {
-                moviePoster.setImageBitmap(bitmap);
-            }
-        });
 
         bookmark.setOnClickListener(new OnClickListener() {
             @Override
@@ -83,8 +73,6 @@ public class MovieCatalog extends LinearLayout {
                 movieDB.setApiId(movie.getId().toString());
 
                 MovieAccessHelper.getContext(v.getContext()).addMovie(movieDB);
-
-                apiCallbacks.reDownload();
             }
         });
     }

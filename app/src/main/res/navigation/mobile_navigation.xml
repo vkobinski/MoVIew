@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/navigation_home">
+    app:startDestination="@+id/navigation_dashboard">
 
     <fragment
         android:id="@+id/navigation_home"
@@ -15,11 +15,21 @@
         android:id="@+id/navigation_dashboard"
         android:name="com.kodev.moview.ui.dashboard.DashboardFragment"
         android:label="@string/title_dashboard"
-        tools:layout="@layout/fragment_dashboard" />
+        tools:layout="@layout/fragment_dashboard" >
+        <action
+            android:id="@+id/action_navigation_dashboard_to_navigation_movie_view"
+            app:destination="@id/navigation_movie_view" />
+    </fragment>
 
     <fragment
         android:id="@+id/navigation_notifications"
         android:name="com.kodev.moview.ui.notifications.NotificationsFragment"
         android:label="@string/title_notifications"
         tools:layout="@layout/fragment_notifications" />
+
+    <fragment
+        android:id="@+id/navigation_movie_view"
+        android:name="com.kodev.moview.ui.movie_view.MovieViewFragment"
+        android:label="@string/title_movie_view"
+        tools:layout="@layout/fragment_movie_view" />
 </navigation>

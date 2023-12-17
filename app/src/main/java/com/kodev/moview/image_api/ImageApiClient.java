@@ -28,12 +28,12 @@ public class ImageApiClient {
         return instance;
     }
 
-    public void getImage(String imageName, ImageCallback imageCallback) {
+    public void getImage(String tag, String imageName, ImageCallback imageCallback) {
 
-        imageName= imageName.replace("/", "");
+        final String imageNameFinal = imageName.replace("/", "");
 
         ImageApiInterface apiInterface = ImageApiClientImplementation.getClient();
-        Call<ResponseBody> call = apiInterface.getImage(imageName);
+        Call<ResponseBody> call = apiInterface.getImage(imageNameFinal);
 
         call.enqueue(new Callback<ResponseBody>() {
             @Override
@@ -41,7 +41,7 @@ public class ImageApiClient {
 
                 if(response.isSuccessful() && response.body() != null) {
                     Bitmap bmp = BitmapFactory.decodeStream(response.body().byteStream());
-                    imageCallback.downloadImage(bmp);
+                    imageCallback.downloadImage(tag, bmp);
                 }
             }
 

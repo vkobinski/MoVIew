@@ -6,5 +6,5 @@ public interface ApiCallbacks {
 
    void getMoviesCallBack(MovieApi movies);
 
-   void reDownload();
+
 }

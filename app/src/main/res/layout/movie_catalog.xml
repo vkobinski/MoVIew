@@ -21,11 +21,12 @@
         android:layout_width="120dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
+        android:ellipsize="end"
+        android:fontFamily="@font/istok_web"
+        android:maxLength="26"
+        android:maxLines="1"
         android:text="movie_name"
         android:textColor="@color/white"
-        android:maxLength="26"
-        android:ellipsize="end"
-        android:maxLines="1"
         android:textSize="12sp"
         app:layout_constraintStart_toStartOf="@+id/movieImage"
         app:layout_constraintTop_toBottomOf="@+id/movieImage" />
@@ -35,6 +36,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="25dp"
+        android:fontFamily="@font/istok_web"
         android:text="movie_desc"
         android:textColor="@color/white"
         android:textSize="9dp"
@@ -43,21 +45,21 @@
 
     <com.kodev.moview.customviews.Stars
         android:id="@+id/stars"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="60dp"
+        android:layout_height="20dp"
         android:layout_marginTop="2dp"
         app:layout_constraintStart_toStartOf="@+id/movieImage"
         app:layout_constraintTop_toBottomOf="@+id/movie_desc"
         />
 
     <com.kodev.moview.customviews.Bookmark
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        bookmark:active="false"
         android:id="@+id/bookmark"
+        android:layout_width="15dp"
+        android:layout_height="15dp"
         app:layout_constraintBottom_toBottomOf="@+id/stars"
         app:layout_constraintEnd_toEndOf="@+id/movieImage"
-        app:layout_constraintTop_toTopOf="@+id/stars" />
+        app:layout_constraintTop_toBottomOf="@+id/movie_desc"
+        bookmark:active="false" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

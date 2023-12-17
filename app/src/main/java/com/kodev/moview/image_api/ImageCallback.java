@@ -5,5 +5,5 @@ import android.widget.ImageView;
 
 public interface ImageCallback {
 
-    void downloadImage(Bitmap bitmap);
+    void downloadImage(String tag, Bitmap bitmap);
 }

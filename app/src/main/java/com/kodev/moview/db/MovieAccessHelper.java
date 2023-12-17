@@ -164,27 +164,43 @@ public final class MovieAccessHelper {
                 selection,
                 selectionArgs);
 
-        if(count != -1) Log.e("DATABASE", "Database update by ID affected more than one Row");
     }
 
     // Função que altera o status de um filme para "Para Ver" ou não
-    public void updateMovieWatchlist(Long id, boolean watchlist) {
+    public void updateMovieWatchlist(String apiId, boolean watchlist) {
+
         SQLiteDatabase database = db.getWritableDatabase();
 
         ContentValues values = new ContentValues();
         values.put(MovieSqlite.MovieEntry.COLUMN_NAME_WATCHLIST, watchlist);
 
-        String selection = MovieSqlite.MovieEntry._ID + " = ?";
-        String[] selectionArgs = { id.toString() };
+        String selection = MovieSqlite.MovieEntry.COLUMN_NAME_API_ID + " = ?";
+        String[] selectionArgs = { apiId };
 
         int count = database.update(
                 MovieSqlite.MovieEntry.TABLE_NAME,
                 values,
                 selection,
                 selectionArgs);
-
-        if(count != -1) Log.e("DATABASE", "Database update by ID affected more than one Row");
     }
+
+    public void updateMovieRating(String apiId, int rating) {
+
+        SQLiteDatabase database = db.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put(MovieSqlite.MovieEntry.COLUMN_NAME_RATING, rating);
+
+        String selection = MovieSqlite.MovieEntry.COLUMN_NAME_API_ID + " = ?";
+        String[] selectionArgs = { apiId };
+
+        int count = database.update(
+                MovieSqlite.MovieEntry.TABLE_NAME,
+                values,
+                selection,
+                selectionArgs);
+    }
+
 
     public Movie searchMovieByApiId(String apiId) {
         List<Movie> movies = getAll();

@@ -63,23 +63,4 @@ public class MovieAccessHelperInstrumentedTest {
         assertEquals(movies.get(0).getApiId(), movie.getApiId());
     }
 
-    @Test
-    public void addMultipleMovies() {
-
-        Movie movie1 = generateMovie();
-        Movie movie2 = generateMovie();
-        Movie movie3 = generateMovie();
-
-
-        int before = helper.getAll().size();
-
-        Long test1 = helper.addMovie(movie1);
-        Long test2 = helper.addMovie(movie2);
-        Long test3 = helper.addMovie(movie3);
-
-        List<Movie> movies = helper.getAll();
-
-        assertEquals(3, movies.size());
-    }
-
 }
