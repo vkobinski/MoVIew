@@ -13,6 +13,8 @@ public class ApiImplementation {
 
     private static ApiImplementation instance;
 
+    private int page = 1;
+
     private ApiImplementation() {
     }
 
@@ -21,6 +23,10 @@ public class ApiImplementation {
             instance = new ApiImplementation();
         }
         return instance;
+    }
+
+    public void resetPage() {
+        this.page = 1;
     }
 
     public void searchMovies(String query, int page,ApiCallbacks callback) {
@@ -96,8 +102,8 @@ public class ApiImplementation {
     public void listDiscoverMovies(ApiCallbacks callback) {
         ApiInterface apiInterface = ApiClient.getClient();
 
-        Call<MovieApi> call = apiInterface.listDiscoverMovies();
-
+        Call<MovieApi> call = apiInterface.listDiscoverMovies(page);
+        page++;
 
         call.enqueue(new Callback<MovieApi>() {
             @Override

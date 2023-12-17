@@ -26,6 +26,7 @@ public class SearchBar extends LinearLayout {
     private ApiCallbacks apiCallbacks;
     private EditText buscaText;
     private ImageView buscaButton;
+    private boolean searching = false;
 
     private int page = 1;
 
@@ -90,7 +91,12 @@ public class SearchBar extends LinearLayout {
         });
     }
 
+    public boolean isSearching() {
+        return this.searching;
+    }
+
     public void getMovies() {
+        this.searching = true;
         String query = buscaText.getText().toString();
         ApiImplementation.getInstance().searchMovies(query, page, apiCallbacks);
     }

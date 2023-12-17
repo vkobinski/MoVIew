@@ -66,8 +66,10 @@ public class DashboardFragment extends Fragment  implements ApiCallbacks, Recycl
                 super.onScrollStateChanged(recyclerView, newState);
 
                 if(!recyclerView.canScrollVertically(1)) {
-                    searchBar.oneMorePage();
-                    searchBar.getMovies();
+                    if(searchBar.isSearching()) {
+                        searchBar.oneMorePage();
+                        searchBar.getMovies();
+                    }else ApiImplementation.getInstance().listDiscoverMovies(DashboardFragment.this);
                 }
             }
         });
@@ -87,12 +89,12 @@ public class DashboardFragment extends Fragment  implements ApiCallbacks, Recycl
     public void onDestroyView() {
         super.onDestroyView();
         binding = null;
+        ApiImplementation.getInstance().resetPage();
     }
 
     @Override
     public void getMoviesCallBack(MovieApi movies) {
-        catalogRecycler.setMovies(movies.getResults(), true);
-
+        catalogRecycler.setMovies(movies.getResults(), false);
     }
 
     @Override
